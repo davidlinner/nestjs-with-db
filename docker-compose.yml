@@ -1,0 +1,21 @@
+services:
+
+  postgres:
+    image: postgres:18-alpine
+    container_name: app-postgres
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports:
+      - "15432:5432"
+    volumes:
+      - app_pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  app_pgdata:
