@@ -19,4 +19,8 @@ export class StudentsService {
   create(data: StudentCreateDTO) {
     return this.repo.save(this.repo.create(data));
   }
+
+  delete(id: number) {
+    return this.repo.delete(id);
+  }
 }
